@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register - EduTech Learning Platform</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background: linear-gradient(45deg, #2563eb, #7c3aed);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+        }
+
+        .container {
+            max-width: 1200px;
+            width: 100%;
+            text-align: center;
+        }
+
+        h1 {
+            color: white;
+            margin-bottom: 2rem;
+            font-size: 2.5rem;
+            animation: fadeInDown 1s ease-out;
+        }
+
+        .register-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin: 2rem auto;
+            max-width: 1000px;
+        }
+
+        .form {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            animation: fadeInLeft 0.8s ease-out;
+        }
+
+        .form-group {
+            margin-bottom: 2rem;
+            text-align: left;
+        }
+
+        .form-group label {
+            display: block;
+            color: white;
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 0.8rem;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: white;
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .form-group p {
+            color: white;
+            margin: 1rem 0;
+        }
+
+        .small {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        .camera-frame {
+            width: 320px;
+            height: 240px;
+            background: rgba(0, 0, 0, 0.2);
+            margin: 2rem auto;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: pulse 2s infinite;
+        }
+
+        .camera-frame::before {
+            content: '📸';
+            font-size: 3rem;
+        }
+
+        .steps-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 2rem;
+            border-radius: 15px;
+            color: white;
+            animation: fadeInRight 0.8s ease-out;
+            text-align: left;
+        }
+
+        .step {
+            margin-bottom: 1.5rem;
+            padding-left: 2rem;
+            position: relative;
+        }
+
+        .step::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .button-group {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 2rem;
+        }
+
+        .button {
+            background: white;
+            color: #4338ca;
+            padding: 0.8rem 2rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin-top: 2rem;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .feature-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 1.5rem;
+            border-radius: 15px;
+            color: white;
+            transition: transform 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .alert {
+            background: rgba(255, 255, 255, 0.9);
+            color: #4338ca;
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeInLeft {
+            from { opacity: 0; transform: translateX(-20px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        @keyframes fadeInRight {
+            from { opacity: 0; transform: translateX(20px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.4); }
+            70% { box-shadow: 0 0 0 10px rgba(255, 255, 255, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(255, 255, 255, 0); }
+        }
+
+        @media (max-width: 768px) {
+            .register-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .features {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Start Your Learning Journey</h1>
+        
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="alert">{{ message }}</div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
+        <div class="register-container">
+            <form method="POST" class="form">
+                <div class="form-group">
+                    <label for="username">Choose Your Username</label>
+                    <input type="text" id="username" name="username" required placeholder="Enter your preferred username">
+                </div>
+                
+                <div class="form-group">
+                    <p>Face Recognition Setup</p>
+                    <div class="camera-frame"></div>
+                    <p class="small">Position yourself clearly in front of the camera</p>
+                    <p class="small">The system will capture your face for 5 seconds</p>
+                </div>
+                
+                <div class="button-group">
+                    <button type="submit" class="button">Complete Registration</button>
+                    <a href="{{ url_for('index') }}" class="button">Back to Home</a>
+                </div>
+            </form>
+
+            <div class="steps-card">
+                <h3 style="margin-bottom: 1.5rem;">Registration Steps</h3>
+                <div class="step">
+                    <strong>Choose Username</strong>
+                    <p>Select a unique username for your learning account</p>
+                </div>
+                <div class="step">
+                    <strong>Face Setup</strong>
+                    <p>Position yourself in good lighting for face capture</p>
+                </div>
+                <div class="step">
+                    <strong>Verification</strong>
+                    <p>Quick verification of your facial features</p>
+                </div>
+                <div class="step">
+                    <strong>Ready to Learn</strong>
+                    <p>Access your personalized learning dashboard</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="features">
+            <div class="feature-card">
+                <h3>Personalized Learning</h3>
+                <p>Get customized course recommendations based on your interests</p>
+            </div>
+            <div class="feature-card">
+                <h3>Track Progress</h3>
+                <p>Monitor your learning journey with detailed progress tracking</p>
+            </div>
+            <div class="feature-card">
+                <h3>Interactive Content</h3>
+                <p>Access engaging multimedia content and hands-on exercises</p>
+            </div>
+        </div>
+    </div>
+    
+</body>
+</html>

@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EduTech Learning Platform</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background: linear-gradient(45deg, #2563eb, #7c3aed);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+        }
+
+        .container {
+            max-width: 1200px;
+            width: 100%;
+            text-align: center;
+        }
+
+        h1 {
+            color: white;
+            margin-bottom: 3rem;
+            font-size: 2.5rem;
+            animation: fadeInDown 1s ease-out;
+        }
+
+        .cards-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .card h3 {
+            color: white;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .card p {
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 2rem;
+        }
+
+        .button {
+            background: white;
+            color: #4338ca;
+            padding: 0.8rem 2rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .alert {
+            background: rgba(255, 255, 255, 0.9);
+            color: #4338ca;
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome to EduTech Learning Platform</h1>
+        
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="alert">{{ message }}</div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
+        {% if session.get('user') %}
+            <div class="card">
+                <h3>Welcome back, {{ session['user'] }}!</h3>
+                <p>Ready to continue your learning journey? Your personalized dashboard awaits with your courses, progress tracking, and upcoming assignments.</p>
+                <div class="button-group">
+                    <a href="{{ url_for('dashboard') }}" class="button">My Learning Dashboard</a>
+                    <a href="{{ url_for('logout') }}" class="button">Logout</a>
+                </div>
+            </div>
+            <div class="features">
+                <div class="card">
+                    <h3>Your Progress</h3>
+                    <p>Track your course completion, achievements, and learning milestones all in one place.</p>
+                </div>
+                <div class="card">
+                    <h3>Active Courses</h3>
+                    <p>Resume your enrolled courses and continue your learning journey.</p>
+                </div>
+            </div>
+        {% else %}
+            <div class="cards-container">
+                <div class="card">
+                    <h3>Start Your Learning Journey</h3>
+                    <p>Join our community of learners! Get access to premium courses, interactive content, and expert instructors. Create your account to begin.</p>
+                    <a href="{{ url_for('register') }}" class="button">Register Now</a>
+                </div>
+                
+                <div class="card">
+                    <h3>Welcome Back Learner!</h3>
+                    <p>Resume your learning journey. Access your courses, track progress, and connect with fellow learners.</p>
+                    <a href="{{ url_for('login') }}" class="button">Login</a>
+                </div>
+                
+                <div class="card">
+                    <h3>Platform Features</h3>
+                    <p>• Interactive video lectures
+                    • Live sessions with experts
+                    • Progress tracking
+                    • Personalized learning paths
+                    • Community discussions
+                    • Mobile-friendly learning</p>
+                </div>
+            </div>
+            
+            <div class="features">
+                <div class="card">
+                    <h3>Learn Anywhere</h3>
+                    <p>Access your courses on any device, anytime. Our platform adapts to your schedule and learning style.</p>
+                </div>
+                <div class="card">
+                    <h3>Expert Instructors</h3>
+                    <p>Learn from industry professionals and subject matter experts who bring real-world experience to your education.</p>
+                </div>
+                <div class="card">
+                    <h3>Interactive Learning</h3>
+                    <p>Engage with interactive content, quizzes, assignments, and real-time feedback to enhance your learning experience.</p>
+                </div>
+            </div>
+        {% endif %}
+    </div>
+</body>
+</html>

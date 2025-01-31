@@ -1,0 +1,32 @@
+<!-- templates/dashboard.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Face Recognition</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome, {{ user }}!</h1>
+        
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="alert">{{ message }}</div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
+        <div class="dashboard-content">
+            <p>You have successfully logged in using face recognition.</p>
+            <p>This is your secure dashboard area.</p>
+        </div>
+        
+        <div class="button-group">
+            <a href="{{ url_for('logout') }}" class="button">Logout</a>
+        </div>
+    </div>
+</body>
+</html>
